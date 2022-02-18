@@ -1,0 +1,76 @@
+// create a new database = use <database name>
+
+// show dbs ---- show database available
+
+// to delete = db.dropDatabase()
+
+// to create a collection = db.collectionName. a collection is like a table
+
+//to insert a data into a collection = db.collection.insertOne(). it takes in an object
+
+// to get everything in our database = db.colllection.find()
+
+//every single object stored inside a database is called a document. documents live inside a 
+collection and collection in databases 
+
+// to insert a many documents we use = db.collection.insertMany(). it take in an array of objects
+
+// db.collection.find().limit(2) ---- limits the number of document to find
+
+//db.users.find().sort({ key: -1 or 1}) ---- sorting takes in key and value which is the order we want to sort.
+
+//db.users.find({name: { $eq: 'Imole'}}) ---- find name that's equal to Imole.
+
+//db.users.find({name: { $ne: 'Imole'}}) ---- find name not equal to Imole
+
+//db.users.find({age: { $gt: 20}}) ---- find age greater than 20 in a collection
+
+//db.users.find({age: { $gte: 20}}) ---- find age greater than or equal to 20
+
+//db.users.find({age: { $lt: 20}}) ---- find age less than 20
+
+//db.users.find({name: { $in: ['Imole','ope']}}) ---- finds the names in the user collection
+
+//db.users.find({name: { $nin: ['Imole','ope']}}) ---- gets users with name not equal to imole and ope
+
+//db.users.find({age: {$exists: true}}) ----- find object that have age as key
+
+//db.users.find({age: {$exists: false}}) ----- find object that don't have age as key
+
+//db.users.find({ age: { $gte: 18, $lte: 30 } }) ----- finds age greater than or equal to 18 and 
+less than orequal to 30.
+
+//db.users.find({age: {$gte: 18, $lte: 30}, name: 'taiwo' }) ---- finds age greater than or equal to 18 and 
+less than or equal to 30 with name of taiwo
+
+//db.users.find( { $or: [ { age: {$gte: 30 } }, { name: 'taiwo' } ] } ) ---- find age gte 30 or name of taiwo
+
+//db.users.find({ age: { $not: { $gt: 20 } } }) ---- find age not gt 20. it also finds objects without age key
+
+// to access a column instead of a specific value we use dollar sign 
+
+// db.users.find({$expr: { $gt: ['$debt', '$balance']} }) ---- finds column where debt is gt balance
+
+// db.users.find({ 'address.street': '7A Milverton' }) ---- finds  correct address namedb
+
+//db.users.countDocuments({ age: { $lt: 30 } }) ---- counts the number of docs with age lt 30
+
+// db.users.updateOne({age: 20}, { $set: { age:27 } }) ---- updates object with age of 20
+
+//db.users.updateOne({_id:ObjectId("620e74f5a990cd590a40a961")}, {$set: {name: 'chidera'}}) ---- update using ID
+
+// db.users.updateOne({_id: ObjectId("620e74f5a990cd590a40a961")}, { $inc: { age: 4 }}) ---- increases age by 4
+
+// db.users.updateOne({_id: ObjectId("620e74f5a990cd590a40a961")}, {$rename: {name:'firstName'}}) --- renames name property to firstName
+
+// db.users.updateOne({_id: ObjectId("620e74f5a990cd590a40a961")}, {$unset: {age:''}}) --- removes the age key of the user
+
+//db.users.updateOne({_id: ObjectId("620e6e3da990cd590a40a95d")}, {$push: {hobbies: 'gaming'}}) --- adds to an array property
+
+//db.users.updateOne({_id: ObjectId("620e6e3da990cd590a40a95d")}, {$pull: {hobbies: 'gaming'}}) --- removes from an array property
+
+//db.users.updateMany({debt: {$exists: true}}, {$unset: {debt: ''}}) --- removes debt property of all users
+
+// db.users.replaceOne({name: 'Imole'}, {name: 'John', age: 24, balance: 150}) --- replaces the entire field with name imole
+
+// db.users.deleteMany({age: {$exists: false}}) --- delete all users that don't have an age property
